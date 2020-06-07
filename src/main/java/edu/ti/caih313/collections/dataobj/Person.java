@@ -1,15 +1,26 @@
 package edu.ti.caih313.collections.dataobj;
 
+import java.time.LocalDate;
+import java.time.Period;
+import java.time.format.DateTimeFormatter;
+import java.util.Collection;
+import java.util.Map;
+import java.util.Set;
+
 public class Person {
     private Name name;
     private Gender gender;
     private double age;
-    private String emailAddress;
-
+    private EmailAddress emailAddress;
+    private LocalDate birthDate;
     public enum Gender {MALE, FEMALE}
 
-    public Person(Name name, Gender gender)
-    {
+    public Person(Name name, Gender gender, LocalDate birthDate) {
+        this.name = name;
+        this.gender = gender;
+        this.birthDate = birthDate;
+    }
+    public Person(Name name, Gender gender) {
         this.name = name;
         this.gender = gender;
     }
@@ -27,28 +38,43 @@ public class Person {
     }
 
     public double getAge() {
-        return age;
+        Period ageNow = Period.between(birthDate, LocalDate.now());
+        return ageNow.getYears();
     }
 
     public void setAge(double age) {
         this.age = age;
     }
 
-    public String getEmailAddress() {
+    public EmailAddress getEmailAddress() {
         return emailAddress;
     }
 
-    public void setEmailAddress(String emailAddress) {
-        this.emailAddress = emailAddress;
+    public void setEmailAddress(EmailAddress.EmailType emailType, String setEmailAddress) {
+
+        if(emailAddress == null){
+            emailAddress = new EmailAddress(setEmailAddress, emailType);
+        }
+        this.emailAddress.emailMap.put(emailType, setEmailAddress);
     }
 
     @Override
     public String toString() {
+        String emailAddressString;
+        if(emailAddress == null) {
+            emailAddressString = "no email address available";
+        }
+        else {
+            emailAddressString = emailAddress.getEmailAddress();
+        }
+        DateTimeFormatter format = DateTimeFormatter.ofPattern("MMM d, yyyy 'C.E.'");
+        String birthDateString = birthDate.format(format);
         return "Person{" +
                 "name=" + name +
                 ", gender=" + gender +
                 ", age=" + age +
-                ", emailAddress='" + emailAddress + '\'' +
+                ", emailAddress='" + emailAddressString + '\'' +
+                ", birth date='" + birthDateString + '\'' +
                 '}';
     }
 }

@@ -11,7 +11,7 @@ import static edu.ti.caih313.collections.dataobj.Person.Gender.*;
 
 public class PeopleFilterDemo {
     public static void main(String... args) {
-        PersonSortable personArray[] = {
+        Person personArray[] = {
                 new PersonSortable(new Name("John", "Smith"), Person.Gender.MALE, 41),
                 new PersonSortable(new Name("Karl", "Ng"), Person.Gender.MALE, 20),
                 new PersonSortable(new Name("Jeff", "Smith"), Person.Gender.MALE, 42),
