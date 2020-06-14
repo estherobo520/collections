@@ -4,6 +4,7 @@ import java.time.LocalDate;
 import java.time.Period;
 import java.time.format.DateTimeFormatter;
 import java.util.Collection;
+import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
 
@@ -41,6 +42,8 @@ public class Person {
         Period ageNow = Period.between(birthDate, LocalDate.now());
         return ageNow.getYears();
     }
+
+    public HashMap<EmailAddress.EmailType, String> getEmailMap() { return emailAddress.emailAddressHashMap; }
 
     public void setAge(double age) {
         this.age = age;

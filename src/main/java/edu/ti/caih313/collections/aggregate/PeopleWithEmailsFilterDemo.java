@@ -5,6 +5,8 @@ import edu.ti.caih313.collections.dataobj.Name;
 import edu.ti.caih313.collections.dataobj.Person;
 import edu.ti.caih313.collections.dataobj.PersonSortable;
 
+import java.util.Arrays;
+
 public class PeopleWithEmailsFilterDemo {
 
     public static void main(String... args) {
@@ -23,28 +25,26 @@ public class PeopleWithEmailsFilterDemo {
         joeDoe3.setEmailAddress(EmailAddress.EmailType.HOME, "joedoe3@gmail.com");
         joeDoe3.setEmailAddress(EmailAddress.EmailType.WORK, "joedoe3@work.com");
 
-        PersonSortable nameArray[] = {joeDoe, joeDoe2, joeDoe3};
-//
-//        PeopleWithEmailsFilterDemo.printAllSchoolEmails(personArray);
-//        PeopleWithEmailsFilterDemo.printAllEmailsOverAgeX(personArray, 20);
+        PersonSortable personArray[] = {joeDoe, joeDoe2, joeDoe3};
+
+        PeopleWithEmailsFilterDemo.printAllSchoolEmails(personArray);
+        PeopleWithEmailsFilterDemo.printAllEmailsOverAgeX(personArray, 20);
     }
 
-//    public static void printAllSchoolEmails(Person [] personArray)
-//    {
-//        System.out.println("List of Person's school email addresses");
-//        Arrays.stream(personArray)
-//                .forEach(e -> System.out.println(e.getEmailMap().get(EmailType.SCHOOL)));
-//    }
-//
-//    public static void printAllEmailsOverAgeX(Person [] personArray, int age)
-//    {
-//        System.out.println();
-//        System.out.println("List of ALL Person's emails over the age of " + age + ".");
-//        Arrays.stream(personArray)
-//                .filter(p -> p.getAge() > 20)
-//                .forEach(e -> System.out.println(e.getName().getFirstName() + e.getName().getLastName() +
-//                        "'s email addresses are: " + e.getEmailMap().values()));
-//    }
+        public static void printAllSchoolEmails(Person [] personArray)
+    {
+        System.out.println("All school email address:");
+        Arrays.stream(personArray)
+                .forEach(e -> System.out.println(e.getEmailMap().get(EmailAddress.EmailType.SCHOOL)));
+    }
 
 
+    public static void printAllEmailsOverAgeX(Person [] personArray, int age)
+    {
+        System.out.println("All emails over " + age + " years old.");
+        Arrays.stream(personArray)
+                .filter(p -> p.getAge() > age)
+                .forEach(e -> System.out.println(e.getName().getFirstName() + e.getName().getLastName() +
+                        "'s email addresses are: " + e.getEmailMap().values()));
+   }
 }

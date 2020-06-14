@@ -1,12 +1,14 @@
 package edu.ti.caih313.collections.dataobj;
 
 import java.security.InvalidParameterException;
+import java.util.HashMap;
 import java.util.Map;
 
 public class EmailAddress {
     public enum EmailType {HOME, WORK, SCHOOL}
 
     public Map<EmailType, String> emailMap;
+    HashMap<EmailType, String> emailAddressHashMap = new HashMap<EmailType, String>();
 
     public EmailAddress(String emailAddress, EmailType type) {
         if (!validate(emailAddress)) {
